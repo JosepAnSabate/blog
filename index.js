@@ -3,6 +3,14 @@ const path = require('path')
 
 const app = new express()
 const ejs = require('ejs')
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const BlogPost = require('./models/BlogPost.js')
+
+mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true})
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
@@ -30,4 +38,14 @@ app.get('/post',(req,res)=>{
     res.render('post');
 })
 
+app.get('/posts/new',(req,res)=>{
+    res.render('create')
+})
+
+app.post('/posts/store',(req,res)=>{
+    //model creates a new doc with browser data
+    BlogPost.create(req.body,(error,blogspot) =>{
+     res.redirect('/')    
+    })  
+})
 
