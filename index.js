@@ -27,6 +27,7 @@ const flash = require('connect-flash');
 
 app.use(fileUpload()) 
 
+//mongoose.connect('mongodb+srv://node12345678:node12345678@blog-node-vxjpr.mongodb.net/blog-node', {useNewUrlParser: true});
 mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true})
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
