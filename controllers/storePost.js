@@ -9,6 +9,7 @@ module.exports = (req,res)=>{
             image: '/img/' + image.name,
             userid: req.session.userId
         })
+        console.log("req.body",req.body)
         res.redirect('/')
     })            
 }
