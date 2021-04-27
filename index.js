@@ -23,7 +23,7 @@ const logoutController = require('./controllers/logout')
 const validateMiddleWare = require("./middleware/validateMiddleware");
 const authMiddleware = require('./middleware/authMiddleware');
 const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware')
-
+const flash = require('connect-flash');
 
 app.use(fileUpload()) 
 
@@ -59,6 +59,8 @@ app.use("*", (req, res, next) => {
     loggedIn = req.session.userId; 
     next()   
 });
+
+app.use(flash());//register the middleware
  
 app.get('/posts/new',authMiddleware, newPostController)
 app.get('/posts/new',newPostController)
